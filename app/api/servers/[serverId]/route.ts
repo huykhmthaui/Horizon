@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
 import { currentProfile } from "@/lib/current-profile";

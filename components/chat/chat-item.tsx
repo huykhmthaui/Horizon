@@ -84,8 +84,8 @@ export const ChatItem = ({
     }
 
     useEffect(() => {
-        const handleKeyDown = (event: any) => {
-            if (event.key === "Escape" || event.keyCode === 27) setIsEditing(false);
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape" || event.code === 'Escape') setIsEditing(false);
         }
 
         window.addEventListener('keydown', handleKeyDown);

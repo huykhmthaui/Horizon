@@ -35,7 +35,7 @@ export const EmojiPicker = ({
             >
                 <Picker
                     data={data}
-                    onEmojiSelect={(emoji: any) => onChange(emoji.native)}
+                    onEmojiSelect={(emoji: { native: string }) => onChange(emoji.native)}
                     theme={resolvedTheme}
                 />
             </PopoverContent>

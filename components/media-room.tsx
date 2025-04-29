@@ -63,7 +63,7 @@ export const MediaRoom = ({ chatId, video, audio }: MediaRoomProps) => {
       video={video}
       audio={audio}
     >
-      {video && <VideoConference />}
+      <VideoConference />
     </LiveKitRoom>
   );
 };

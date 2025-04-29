@@ -4,8 +4,7 @@ import { NextResponse } from "next/server"
 import { MemberRole } from "@prisma/client";
 
 export async function POST(
-    req: Request,
-    { params }: { params: { serverId: string } }
+    req: Request
 ) {
     try {
         const profile = await currentProfile();

@@ -3,13 +3,12 @@
 import { ShieldAlert, ShieldCheck, User } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Member, MemberRole, Profile, Server } from "@prisma/client";
+import { Member, MemberRole, Profile } from "@prisma/client";
 import { useParams, useRouter } from "next/navigation";
 import { UserAvatar } from "@/components/user-avatar";
 
 interface ServerMemberProps {
-    member: Member & { profile: Profile },
-    server: Server
+    member: Member & { profile: Profile }
 }
 
 const roleIconMap = {
@@ -19,8 +18,7 @@ const roleIconMap = {
 }
 
 export const ServerMember = ({
-    member,
-    server
+    member
 }: ServerMemberProps) => {
     const router = useRouter();
     const params = useParams();
