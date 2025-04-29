@@ -24,6 +24,10 @@ export const NavigationItem = ({
         router.push(`/servers/${id}`);
     }
 
+    // Cắt tại dấu gạch dưới cuối cùng
+    const index = imageUrl.lastIndexOf('_');
+    const newImageUrl = index !== -1 ? imageUrl.substring(0, index) : imageUrl;
+
     return (
         <ActionTooltip
             side="right"
@@ -44,7 +48,7 @@ export const NavigationItem = ({
                 )}>
                     <Image
                         fill
-                        src={imageUrl}
+                        src={newImageUrl}
                         alt="Channel"
                         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"/>
                 </div>
