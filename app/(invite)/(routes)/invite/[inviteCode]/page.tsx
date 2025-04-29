@@ -14,7 +14,7 @@ const InviteCodePage = async ({ params }: InviteCodePageProps) => {
 
     const { redirectToSignIn } = await auth();
 
-    const inviteCode = await params.inviteCode;
+    const inviteCode = params.inviteCode;
 
     if (!profile) return redirectToSignIn();
 
