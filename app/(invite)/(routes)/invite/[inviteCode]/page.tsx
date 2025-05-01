@@ -4,9 +4,9 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 interface InviteCodePageProps {
-    params: {
+    params: Promise<{
         inviteCode: string;
-    };
+    }>
 };
 
 const InviteCodePage = async ({ params }: InviteCodePageProps) => {
