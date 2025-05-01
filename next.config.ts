@@ -16,10 +16,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true
   },
-  devIndicators: false,
-  env: {
-    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
-  }
+  devIndicators: false
 };
 
 export default nextConfig;
