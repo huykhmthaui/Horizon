@@ -38,8 +38,15 @@ export const ChatMessages = ({
   type,
 }: ChatMessagesProps) => {
   const queryKey = `chat:${chatId}`;
-  const addKey = `chat:${chatId}:messages`;
-  const updateKey = `chat:${chatId}:messages:update`;
+  const addKey =
+    type === "conversation"
+      ? `chat:${chatId}:direct-messages`
+      : `chat:${chatId}:messages`;
+
+  const updateKey =
+    type === "conversation"
+      ? `chat:${chatId}:direct-messages:update`
+      : `chat:${chatId}:messages:update`;
 
   const chatRef = useRef<ComponentRef<"div">>(null);
   const bottomRef = useRef<ComponentRef<"div">>(null);
