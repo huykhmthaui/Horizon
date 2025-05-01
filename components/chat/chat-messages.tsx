@@ -113,6 +113,7 @@ export const ChatMessages = ({
                 member={message.member}
                 timeStamp={format(new Date(message.createdAt), DATE_FORMAT)}
                 fileUrl={message.fileUrl}
+                fileName={message.fileName}
                 deleted={message.deleted}
                 currentMember={member}
                 isUpdated={message.updatedAt !== message.createdAt}

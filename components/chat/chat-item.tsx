@@ -41,6 +41,7 @@ interface ChatItemProps {
     member: MemberWithProfile;
     timeStamp: string;
     fileUrl: string | null;
+    fileName: string | null;
     deleted: boolean;
     currentMember: Member;
     isUpdated: boolean;
@@ -64,6 +65,7 @@ export const ChatItem = ({
     member,
     timeStamp,
     fileUrl,
+    fileName,
     deleted,
     currentMember,
     isUpdated,
@@ -118,9 +120,7 @@ export const ChatItem = ({
         }
     }
 
-    const fileType = fileUrl?.split(".").pop();
-    const fileName = fileUrl?.split("_").pop();
-    const Url = fileUrl?.substring(0, fileUrl.lastIndexOf("_"));
+    const fileType = fileName?.split(".").pop();
 
     const isAdmin = currentMember.role === MemberRole.ADMIN;
     const isModerator = currentMember.role === MemberRole.MODERATOR;
@@ -128,7 +128,7 @@ export const ChatItem = ({
     const canDeleteMessage = !deleted && (isAdmin || isModerator || isOwner);
     const canEditMessage = !deleted && isOwner && !fileUrl;
     const isPDF = fileType === "pdf" && fileUrl;
-    const isImage = !isPDF && Url;
+    const isImage = !isPDF && fileUrl;
 
     return (
         <div className="relative group flex items-center w-full hover:bg-black/5 p-4 transition">
@@ -158,14 +158,14 @@ export const ChatItem = ({
                     </div>
                     {isImage && (
                         <a
-                            href={Url}
+                            href={fileUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="relative flex items-center h-48 w-48 bg-secondary
                                 aspect-square rounded-md mt-2 overflow-hidden border"
                         >
                             <Image
-                                src={Url}
+                                src={fileUrl}
                                 alt={content}
                                 fill
                                 className="object-cover"
@@ -178,7 +178,7 @@ export const ChatItem = ({
                                 className="h-10 w-10 fill-indigo-200 stroke-indigo-400"
                             />
                             <a
-                                href={Url}
+                                href={fileUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="ml-2 text-sm text-indigo-500 dark:text-indigo-400 hover:underline"

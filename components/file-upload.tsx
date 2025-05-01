@@ -5,8 +5,8 @@ import { FileIcon, X } from "lucide-react";
 import Image from "next/image";
 
 interface fileUploadProps {
-    onChange: (url?: string) => void;
-    value: string;
+    onChange: (url?: string, name?: string) => void;
+    value: {url: string, name?: string} | string;
     endpoint: "imageUploader" | "messageFile";
 }
 
@@ -15,16 +15,15 @@ const FileUpload = ({
     value,
     endpoint,
 }: fileUploadProps) => {
-    const fileName = value.split("_").pop();
-    const fileType = value.split(".").pop();
-    value = value.substring(0, value.lastIndexOf("_"));
+    const fileType = typeof value === "object" ? value.name?.split(".").pop() : undefined;
+    const url = typeof value === "object" ? value.url : value;
 
-    if (value && fileType !== "pdf") {
+    if (url && fileType !== "pdf") {
         return (
             <div className="relative h-40 w-40">
                 <Image
                     fill
-                    src={value}
+                    src={typeof value === "object" ? value.url : ""}
                     alt="Upload"
                     sizes="(max-width: 768px) 30vw, (max-width: 1200px) 33vw, 21vw"
                 />
@@ -39,19 +38,19 @@ const FileUpload = ({
         )
     }
 
-    if (value && fileType === "pdf") {
+    if (url && fileType === "pdf") {
         return (
             <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
                 <FileIcon
                     className="h-10 w-10 fill-indigo-200 stroke-indigo-400"
                 />
                 <a
-                    href={value}
+                    href={typeof value === "object" ? value.url : ""}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="ml-2 text-sm text-indigo-500 dark:text-indigo-400 hover:underline"
                 >
-                    {fileName}
+                    {typeof value === "object" ? value.name : ""}
                 </a>
                 <button
                     onClick={() => onChange("")}
@@ -64,12 +63,12 @@ const FileUpload = ({
         )
     }
 
-    if (value && endpoint !== "messageFile") {
+    if (url && endpoint !== "messageFile") {
         return (
             <div className="relative h-20 w-20">
                 <Image
                     fill
-                    src={value}
+                    src={typeof value === "object" ? value.url : ""}
                     alt="Upload"
                     sizes="(max-width: 768px) 30vw, (max-width: 1200px) 33vw, 21vw"
                     className="rounded-full"
@@ -90,7 +89,9 @@ const FileUpload = ({
             appearance={{ container: "dark:border-white/40", label: "dark:text-white/70", allowedContent: "dark:text-white/70" }}
             endpoint={endpoint}
             onClientUploadComplete={(res) => {
-                onChange(res?.[0].ufsUrl + "_" + res?.[0].name);
+                const fileUrl = res?.[0].ufsUrl;
+                const fileName = res?.[0].name;
+                onChange(fileUrl, fileName);
             }}
             onUploadError={(error) => {
                 console.log(error);
