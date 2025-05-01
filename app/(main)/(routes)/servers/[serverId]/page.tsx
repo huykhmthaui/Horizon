@@ -4,9 +4,9 @@ import { currentProfile } from "@/lib/current-profile"
 import { redirect } from "next/navigation";
 
 interface ServerIdPageProps {
-    params: {
+    params: Promise<{
         serverId: string
-    }
+    }>
 };
 
 const ServerIdPage = async ({

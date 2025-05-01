@@ -12,13 +12,13 @@ import { ChatInput } from "@/components/chat/chat-input";
 import { MediaRoom } from "@/components/media-room";
 
 interface MemberIdPageProps {
-  params: {
+  params: Promise<{
     serverId: string;
     memberId: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     video?: boolean;
-  };
+  }>;
 }
 
 const MemberIdPage = async ({ params, searchParams }: MemberIdPageProps) => {

@@ -11,10 +11,10 @@ import { ChatMessages } from "@/components/chat/chat-messages";
 import { MediaRoom } from "@/components/media-room";
 
 interface ChannelIdPageProps {
-  params: {
+  params: Promise<{
     serverId: string;
     channelId: string;
-  };
+  }>;
 }
 
 const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
