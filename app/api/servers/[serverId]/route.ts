@@ -22,7 +22,7 @@ export async function PATCH(
             },
             data: {
                 name,
-                imageUrl
+                imageUrl: imageUrl.url,
             }
         });
 

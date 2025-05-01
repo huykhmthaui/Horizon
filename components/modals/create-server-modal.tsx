@@ -31,8 +31,9 @@ const formSchema = z.object({
   name: z.string().min(1, {
     message: "Server name is required.",
   }),
-  imageUrl: z.string().min(1, {
-    message: "Server image is required.",
+  imageUrl: z.object({
+    url: z.string().min(1, { message: "Server image is required" }),
+    name: z.string().optional(),
   }),
 });
 
@@ -46,7 +47,10 @@ export const CreateServerModal = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      imageUrl: "",
+      imageUrl: {
+        url: "",
+        name: "",
+      },
     },
   });
 

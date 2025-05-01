@@ -28,6 +28,8 @@ const MemberIdPage = async ({ params, searchParams }: MemberIdPageProps) => {
 
   const { redirectToSignIn } = await auth();
 
+  const { video } = await searchParams;
+
   if (!profile) return redirectToSignIn();
 
   const currentMember = await db.member.findFirst({
@@ -62,10 +64,10 @@ const MemberIdPage = async ({ params, searchParams }: MemberIdPageProps) => {
         type="conversation"
         imageUrl={otherMember.profile.imageUrl}
       />
-      {searchParams.video && (
+      {video && (
         <MediaRoom chatId={conversation.id} video={true} audio={true} />
       )}
-      {!searchParams.video && (
+      {!video && (
         <>
           <ChatMessages
             name={otherMember.profile.name}

@@ -32,8 +32,9 @@ const formSchema = z.object({
   name: z.string().min(1, {
     message: "Server name is required.",
   }),
-  imageUrl: z.string().min(1, {
-    message: "Server image is required.",
+  imageUrl: z.object({
+    url: z.string().min(1, { message: "Attachment is required" }),
+    name: z.string().optional(),
   }),
 });
 
@@ -49,14 +50,19 @@ export const EditServerModal = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      imageUrl: "",
+      imageUrl: {
+        url: "",
+        name: "",
+      },
     },
   });
 
   useEffect(() => {
     if (server) {
       form.setValue("name", server.name);
-      form.setValue("imageUrl", server.imageUrl);
+      form.setValue("imageUrl", {
+        url: server.imageUrl
+      });
     }
   }, [server, form]);
 
