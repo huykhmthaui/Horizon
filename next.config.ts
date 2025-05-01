@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
     optimizeCss: true
   },
   devIndicators: false,
+  env: {
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+  }
 };
 
 export default nextConfig;
