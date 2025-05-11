@@ -36,7 +36,7 @@ export const ServerSection = ({
                 >
                     <button className="text-zinc-500 hover:text-zinc-600
                         dark:text-zinc-400 dark:hover:text-zinc-300 transition"
-                        onClick={() => onOpen("createChannel", {channelType})}
+                        onClick={() => setTimeout(() => onOpen("createChannel", {channelType}), 0)}
                     >
                         <Plus className="h-4 w-4" />
                     </button>
@@ -49,7 +49,7 @@ export const ServerSection = ({
                 >
                     <button className="text-zinc-500 hover:text-zinc-600
                     dark:text-zinc-400 dark:hover:text-zinc-300 transition"
-                        onClick={() => onOpen("members", { server })}
+                        onClick={() => setTimeout(() => onOpen("members", { server }), 0)}
                     >
                         <Settings className="h-4 w-4" />
                     </button>
