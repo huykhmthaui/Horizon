@@ -65,31 +65,23 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
             paramValue={channelId}
             type={"channel"}
           />
+          <ChatInput
+            apiUrl="/api/socket/messages"
+            query={{
+              channelId: channelId,
+              serverId: serverId,
+            }}
+            name={channel.name}
+            type="channel"
+          />
         </>
       )}
       {channel.type === ChannelType.AUDIO && (
-        <MediaRoom
-            chatId={channelId}
-            video={false}
-            audio={true}
-        />
+        <MediaRoom chatId={channelId} video={false} audio={true} />
       )}
       {channel.type === ChannelType.VIDEO && (
-        <MediaRoom
-            chatId={channelId}
-            video={true}
-            audio={false}
-        />
+        <MediaRoom chatId={channelId} video={true} audio={false} />
       )}
-      <ChatInput
-        apiUrl="/api/socket/messages"
-        query={{
-          channelId: channelId,
-          serverId: serverId,
-        }}
-        name={channel.name}
-        type="channel"
-      />
     </div>
   );
 };
